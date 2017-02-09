@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Login Page</title>
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+        <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="assets/css/form-elements.css">
+        <link rel="stylesheet" href="assets/css/style.css">
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <!-- Favicon and touch icons -->
+        <link rel="shortcut icon" href="assets/ico/favicon.png">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
+
+        <script type="text/javascript">
+            var valid=false;
+            function validate(){
+                var msg="";
+                var uname= document.myForm.userName.value;
+                var pwd = document.myForm.pwd.value;
+                if(uname.length==0&&pwd.length==0)
+                {
+                    msg=msg+"Please Enter Username and Password \n"
+                }
+                else if(pwd.length==0){
+                    msg=msg+"Please Enter Password \n"
+                }
+                else if(pwd.length==0){
+                    msg=msg+"Please Enter Username \n"
+                }
+                if(msg.length>0){
+                    window.alert(msg);
+                    valid=false;
+                }
+                else
+                    valid=true;
+                return valid;
+            }
+        </script>
+
+    </head>
+
+    <body ng-app ng-controller="LoginController">
+
+        <!-- Top content -->
+        <div class="top-content">
+        	
+            <div class="inner-bg">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-8 col-sm-offset-2 text">
+                            <h1>My Login Form</h1>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 col-sm-offset-3 form-box">
+                        	<div class="form-top">
+                        		<div class="form-top-left">
+                        			<h3>Login to our site</h3>
+                            		<p>Enter your username and password to log on:</p>
+                        		</div>
+                        		<div class="form-top-right">
+                        			<i class="fa fa-key"></i>
+                        		</div>
+                            </div>
+                            <div class="form-bottom">
+			                    <form role="form" name="myForm" onsubmit="return validate()" action="Music.html" method="post" class="login-form">
+			                    	<div class="form-group">
+			                    		<label class="sr-only">Username</label>
+			                        	<input ng-model="user.firstName" type="text" name="userName" placeholder="Username..." class="form-username form-control">
+			                        </div>
+			                        <div class="form-group">
+			                        	<label class="sr-only" >Password</label>
+			                        	<input ng-model="user.pwd" type="password" name="pwd" placeholder="Password..." class="form-password form-control">
+			                        </div>
+			                        <button type="submit" ng-click="login(user.firstName, user.pwd)" value="Sign in" class="btn" >Sign in!</button>
+                                    <br/> <br/>
+                                    <!--</div>-->
+                                    Not yet Member?<a href="Signup.html"> <b>Click here to register</b></a>
+			                    </form>
+		                    </div>
+                        </div>
+                    </div>
+                    <div class="social-login">
+                        <h3>...or login with:</h3>
+                        <div class="social-login-buttons">
+
+                            <a id="customBtn" class="customGPlusSignIn btn btn-link-1 btn-link-1-google-plus" href="#" onclick="login()">
+                                <i class="fa fa-google-plus"></i> Google Plus</a>
+                            <script>startApp();</script>
+
+                            <!--<div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="false"></div>-->
+                            <!--<fb:login-button scope="public_profile,email" onlogin="checkLoginState();" size="large" font-size='15px'>
+                            </fb:login-button>-->
+
+                            <a class="btn btn-link-1 btn-link-1-facebook" onclick="checkLoginState()">
+                                <i class="fa fa-facebook"></i> Facebook
+                            </a>
+                            <a class="btn btn-link-1 btn-link-1-twitter" href="#">
+                                <i class="fa fa-twitter"></i> Twitter
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+        <!-- Javascript -->
+        <script src="assets/js/jquery-1.11.1.min.js"></script>
+        <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+        <script src="assets/js/jquery.backstretch.min.js"></script>
+        <script src="assets/js/scripts.js"></script>
+        
+        <!--[if lt IE 10]>
+            <script src="assets/js/placeholder.js"></script>
+        <![endif]-->
+        <script type="text/javascript">
+
+            /*function logInAct() {
+                if (document.getElementById("username").value.length > 0 && document.getElementById("password").value.length > 0) {
+                    window.location.href = 'Music.html';
+                }
+                else
+                    alert("Give all details");
+            }*/
+            function statusChangeCallback(response) {
+                console.log('statusChangeCallback');
+                console.log(response);
+                // The response object is returned with a status field that lets the
+                // app know the current login status of the person.
+                // Full docs on the response object can be found in the documentation
+                // for FB.getLoginStatus().
+                if (response.status === 'connected') {
+                    // Logged into your app and Facebook.
+                    testAPI();
+                } else if (response.status === 'not_authorized') {
+                    // The person is logged into Facebook, but not your app.
+                    document.getElementById('status').innerHTML = 'Please log ' +
+                        'into this app.';
+                } else {
+                    // The person is not logged into Facebook, so we're not sure if
+                    // they are logged into this app or not.
+                    document.getElementById('status').innerHTML = 'Please log ' +
+                        'into Facebook.';
+                }
+            }
+            function checkLoginState() {
+                FB.getLoginStatus(function(response) {
+                    statusChangeCallback(response);
+                });
+                window.location.href="Music.html";
+            }
+            window.fbAsyncInit = function() {
+                FB.init({
+                    appId      : '213207565814886',
+                    xfbml      : true,
+                    version    : 'v2.8'
+                });
+                FB.AppEvents.logPageView();
+            };
+
+            (function(d, s, id){
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) {return;}
+                js = d.createElement(s); js.id = id;
+                js.src = "//connect.facebook.net/en_US/sdk.js";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+
+
+
+            /*function tLogin() {
+                FB.login(function (response) {
+                        if (response.status=='connected') {
+                            // document.getElementById('login').style.visibility=false;
+                            getInfo();
+                        } else {
+                            console.log('User cancelled login or did not fully authorize.');
+                        }
+                    }, {scope: 'email'}
+                );
+            }*/
+            function testAPI() {
+
+                console.log('Welcome!  Fetching your information.... ');
+                FB.api('/me', function(response) {
+                        console.log('Successful login for: ' + response.name);
+                        document.getElementById('status').innerHTML =
+                            'Thanks for logging in, ' + response.name + '!';
+                /*FB.api('/me', function (response) {
+                        console.log(response.name.toString());
+                        var str = "<b>Name</b> : " + response.name + "<br>";
+                        str += "<b>Link: </b>" + response.link + "<br>";
+                        str += "<b>Username:</b> " + response.username + "<br>";
+                        str += "<b>id: </b>" + response.id + "<br>";
+                        str += "<b>Email:</b> " + response.email + "<br>";
+                        str += "<input type='button' value='Get Photo' onclick='getPhoto();'/>";
+                        str += "<input type='button' value='Logout' onclick='Logout();'/>";
+                        document.getElementById('status').innerHTML = "Connected";
+                        var name = response.name;
+                        console.log(name)
+                        localStorage.setItem("Name", name);*/
+                    }
+                );
+                //document.getElementById('Music').innerHTML =  document.getElementById('status').value;
+
+            }
+
+            var getNews = function(){
+
+                var search = document.getElementById("newsSearch").value;
+                var searchParams = search.split(" ");
+                var searchString = "";
+
+                for (var i = 0; i < searchParams.length; i++){
+                    if(i != searchParams.length - 1){
+                        searchString += searchParams[i] + "^";
+                    }
+                    else{
+                        searchString += searchParams[i];
+                    }
+                }
+
+                console.log("searchstring", searchString);
+                $.ajax({
+                    url: "https://gateway-a.watsonplatform.net/calls/data/GetNews?outputMode=json&start=now-1d&end=now&count=5&q.enriched.url.enrichedTitle.keywords.keyword.text="+
+                    searchString + "&return=enriched.url.url,enriched.url.title&apikey=cf7f952e90bc0a012fffed7a30bfde51c88edf2a",
+                    dataType: 'json',
+                    success: function(results){
+
+                        var retText = "";
+
+                        for(var i = 0; i < results["result"]["docs"].length; i++){
+                            console.log(results["result"]["docs"][i]["source"]["enriched"]["url"]["title"])
+
+                            retText += results["result"]["docs"][i]["source"]["enriched"]["url"]["title"] + " ".replace("|", " ");
+
+                        }
+
+                        var retTextFinal = retText.replace("|", " ");
+
+                        console.log("retText",retTextFinal);
+                        $("#alltext").text(retTextFinal);
+
+                    }
+                });
+            }
+
+
+
+
+            </script>
+
+        <script>function logout()
+        {
+            gapi.auth.signOut();
+            location.reload();
+        }
+        function login()
+        {
+            var myParams = {
+                'clientid' : '1073546826673-odl3lu0lgqlpmrtvqnvdlaapauj6m7s0.apps.googleusercontent.com',
+                'cookiepolicy' : 'single_host_origin',
+                'callback' : 'loginCallback',
+                'approvalprompt':'force',
+                'scope' : 'https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/plus.profile.emails.read'
+            };
+            gapi.auth.signIn(myParams);
+        }
+
+        function loginCallback(result)
+        {
+            if(result['status']['signed_in'])
+            {
+                var request = gapi.client.plus.people.get(
+                    {
+                        'userId': 'me'
+                    });
+                request.execute(function (resp)
+                {
+                    var email = '';
+                    if(resp['emails'])
+                    {
+                        for(i = 0; i < resp['emails'].length; i++)
+                        {
+                            if(resp['emails'][i]['type'] == 'account')
+                            {
+                                email = resp['emails'][i]['value'];
+                            }
+                        }
+                    }
+
+                    var str = "Name:" + resp['displayName'] + "<br>";
+                    str += "Image:" + resp['image']['url'] + "<br>";
+                    str += "<img src='" + resp['image']['url'] + "' /><br>";
+
+                    str += "URL:" + resp['url'] + "<br>";
+                    str += "Email:" + email + "<br>";
+                    document.getElementById("profile").innerHTML = str;
+                });
+
+            }
+            window.location.href="Music.html";
+        }
+        function onLoadCallback()
+        {
+            gapi.client.setApiKey('AIzaSyD2nRN4ctNFQXz2MzH1RTkqpRqEMsmT9Io');
+            gapi.client.load('plus', 'v1',function(){});
+
+        }
+        (function() {
+            var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+            po.src = 'https://apis.google.com/js/client.js?onload=onLoadCallback';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();</script>
+
+        <script>
+            function LoginController($scope) {
+                $scope.logins = [];
+                $scope.login = function (user, pwd) {
+                    localStorage.setItem("password", pwd);
+                    localStorage.setItem("username", user);
+                    $scope.logins.push(localStorage.getItem("name") + " was logged in.");
+                };
+            }
+        </script>
+
+
+    </body>
+
+</html>

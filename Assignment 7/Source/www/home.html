@@ -1,0 +1,44 @@
+<html class="ht">
+<head>
+<title>Gender Analysis And Custom Search</title>    
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js"></script>
+    <script src="app.js"></script>
+    <link rel="stylesheet" type="text/css" href="home_css.css">
+</head>
+   <body ng-app="Analyze">
+        <div class="body">
+            <div class="body1">
+        <div ng-controller="analyzectrl">
+            <h1 class="head">Gender Analysis with Custom Search</h1><br>
+            <h1>Enter the text</h1>
+            <input type="text" id="txt" placeholder="Enter text" ng-model="text" class="come">
+            <button class="btn btn-primary" ng-click="analyzeg()">Analyze</button>
+            <p ng-model="analyzelang">
+            Female:  {{analyzelang.female | number:2}}%<br>
+            Male:  {{analyzelang.male | number:2}}%
+            </p>
+            
+            <div>
+            <gcse:search>
+                
+                </gcse:search>
+            
+            
+            </div>
+            
+               </div>
+        </div>
+            </div>
+        
+        
+        <script>
+        (function() {
+  var cx = '017643444788069204610:4gvhea_mvga'; // Insert your own Custom Search engine ID here
+  var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+  gcse.src = (document.location.protocol == 'https' ? 'https:' : 'http:') +
+      '//www.google.com/cse/cse.js?cx=' + cx;
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+})();
+        </script>
+    </body>
+</html>
